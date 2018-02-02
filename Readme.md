@@ -15,7 +15,7 @@ Requires Python 3 (tested with `3.6.1`). The remaining dependencies can then be 
 
 You first need to preprocess any input data into the format expected by the model:
 
-        $ python preprocess.py --input <path to input dataset> --output <path to output dataset> --vocab <path to vocab file>
+        $ python preprocess.py --input <path to input directory> --output <path to output directory> --vocab <path to vocab file>
 
 where
 `<path to input directory>` points to a directory containing an input dataset (described below),
