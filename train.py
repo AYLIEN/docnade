@@ -108,7 +108,7 @@ def train(model, dataset, params):
 
 
 def main(args):
-    if not os.path.exists(args.model):
+    if not os.path.isdir(args.model):
         os.mkdir(args.model)
 
     with open(os.path.join(args.model, 'params.json'), 'w') as f:
