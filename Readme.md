@@ -24,7 +24,7 @@ where
 
 **Datasets**: A directory containing CSV files. There is expected to be 1 CSV file per set or collection, with separate sets for training, validation and test. The CSV files in the directory must be named accordingly: `training.csv`, `validation.csv`, `test.csv`. For this task, each CSV file (prior to preprocessing) consists of 2 string fields with a comma delimiter - the first is the label and the second is the document body.
 
-**Vocabulary files**: A plain text file, with 1 vocabulary token per line (note that this must be created in advance, we do not provide a script for creating vocabularies). We do provide the vocabulary file used in our 20 Newsgroups experiment in [`data/20newsgroups.vocab`](data/20newsgroups.vocab).
+**Vocabulary files**: A plain text file, with 1 vocabulary token per line (note that this must be created in advance, we do not provide a script for creating vocabularies). We do provide the vocabulary file used in our 20 Newsgroups experiment in [`data/20newsgroups.vocab`](data/20newsgroups.vocab). If you wish to play with the actual 20 Newsgroups data, it's available [here](http://qwone.com/~jason/20Newsgroups/).
 
 
 ## Training
