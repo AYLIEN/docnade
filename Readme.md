@@ -1,6 +1,6 @@
 # DocNADE
 
-A TensorFlow implementation of the DocNADE model, published in [A Neural Autoregressive Topic Model](https://papers.nips.cc/paper/4613-a-neural-autoregressive-topic-model).
+A TensorFlow implementation of the DocNADE model, published in [A Neural Autoregressive Topic Model](https://papers.nips.cc/paper/4613-a-neural-autoregressive-topic-model). For further discussion of this implementation and DocNADE in general, see this [blog post](http://blog.aylien.com/tensorflow-implementation-neural-autoregressive-topic-model-docnade/).
 
 
 ## Requirements
