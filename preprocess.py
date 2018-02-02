@@ -42,7 +42,7 @@ def main(args):
         vocab = [w.strip() for w in f.readlines()]
     vocab_to_id = dict(zip(vocab, range(len(vocab))))
 
-    if not os.path.exists(args.output):
+    if not os.path.isdir(args.output):
         os.mkdir(args.output)
 
     labels = {}
