@@ -76,7 +76,8 @@ def train(model, dataset, params):
                     dataset.batches(
                         'training',
                         params.batch_size,
-                        num_epochs=1
+                        num_epochs=1,
+                        sample_size=params.eval_max_sample
                     ),
                     session
                 )
@@ -147,6 +148,8 @@ def parse_args():
                         help='print loss after this many steps')
     parser.add_argument('--save-every', type=int, default=500,
                         help='print loss after this many steps')
+    parser.add_argument('--eval-max-sample', type=int, default=None,
+                        help='max training data sample size when evaluating')
     return parser.parse_args()
 
 
