@@ -1,7 +1,6 @@
 import numpy as np
 import sklearn.metrics.pairwise as pw
 
-import datetime
 def closest_docs_by_index(corpus_vectors, query_vectors, n_docs):
     docs = []
     sim = pw.cosine_similarity(corpus_vectors, query_vectors)
