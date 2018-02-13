@@ -1,4 +1,4 @@
-import os
+;import os
 import argparse
 import json
 import numpy as np
@@ -59,7 +59,7 @@ def train(model, dataset, params):
             losses.append(loss)
 
             if step % params.log_every == 0:
-                print('{}: {:.6f}'.format(step, loss))
+                print('{}: {:.6f}'.format(step, loss), flush=True)
 
             if step and (step % params.save_every) == 0:
                 validation_vectors = m.vectors(
@@ -90,11 +90,11 @@ def train(model, dataset, params):
                 print('validation: {:.3f} (best: {:.3f})'.format(
                     val,
                     best_val or 0.0
-                ))
+                ), flush=True)
 
                 if val > best_val:
                     best_val = val
-                    print('saving: {}'.format(model_dir))
+                    print('saving: {}'.format(model_dir), flush=True)
                     saver.save(session, model_dir, global_step=step)
 
                 summary, = session.run([summaries], feed_dict={
