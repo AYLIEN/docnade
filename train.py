@@ -81,10 +81,11 @@ def train(model, dataset, params):
                     ),
                     session
                 )
+                training_sample = dataset.sample_indexes
                 val = e.evaluate(
                     training_vectors,
                     validation_vectors,
-                    training_labels,
+                    training_labels[training_sample],
                     validation_labels
                 )[0]
                 print('validation: {:.3f} (best: {:.3f})'.format(

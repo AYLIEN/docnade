@@ -58,6 +58,7 @@ class Dataset(object):
             assert sample_size < collection_size, "Only samples smaller than available data are provided for."
             sample_indexes = np.random.choice(collection_size, sample_size, replace=False)
             sample_indexes.sort()
+            self.sample_indexes = sample_indexes
             sample_indexes = iter(sample_indexes)
             next_index = next(sample_indexes)
         while True:
