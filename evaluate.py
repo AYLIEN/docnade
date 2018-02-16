@@ -29,25 +29,39 @@ def evaluate_retrieval(model, dataset, params, session):
     training_labels = np.array(
         [[y] for y, _ in dataset.rows('training', num_epochs=1)]
     )
-    training_labels = np.concatenate((training_labels, validation_labels), 0)
     test_labels = np.array(
         [[y] for y, _ in dataset.rows('test', num_epochs=1)]
     )
-
+    sampling = params.eval_max_sample is not None
+    if sampling:
+        validation_size = dataset._get_collection_size('validation')
+        training_size = dataset._get_collection_size('training')
+        sample_size = round(params.eval_max_sample*validation_size/(training_size+validation_size))
+    else:
+        sample_size = None
     validation_vectors = m.vectors(
         model,
-        dataset.batches('validation', params.batch_size, num_epochs=1),
+        dataset.batches('validation', params.batch_size, num_epochs=1, 
+            sample_size=sample_size),
         session
     )
+    if sampling:
+        validation_labels = validation_labels[dataset.sample_indexes]
+        sample_size = round(params.eval_max_sample*training_size/(training_size+validation_size))
     training_vectors = m.vectors(
         model,
-        dataset.batches('training', params.batch_size, num_epochs=1),
+        dataset.batches('training', params.batch_size, num_epochs=1,
+                        sample_size=sample_size),
         session
     )
+    if sampling:
+        training_labels = training_labels[dataset.sample_indexes]
+    training_labels = np.concatenate((training_labels, validation_labels), 0)
     training_vectors = np.concatenate(
         (training_vectors, validation_vectors),
         0
     )
+    
     test_vectors = m.vectors(
         model,
         dataset.batches('test', params.batch_size, num_epochs=1),
@@ -108,6 +122,8 @@ def parse_args():
                         help='the batch size')
     parser.add_argument('--num-cores', type=int, default=1,
                         help='the number of CPU cores to use')
+    parser.add_argument('--eval-max-sample', type=int, default=None,
+                        help='max training data sample size when evaluating')
     return parser.parse_args()
 
 
