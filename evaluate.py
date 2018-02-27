@@ -36,6 +36,7 @@ def evaluate_retrieval(model, dataset, params, session):
     if sampling:
         validation_size = dataset._get_collection_size('validation')
         training_size = dataset._get_collection_size('training')
+        # setup stratified sample between training and validation data sets
         sample_size = round(params.eval_max_sample*validation_size/(training_size+validation_size))
     else:
         sample_size = None
@@ -47,6 +48,7 @@ def evaluate_retrieval(model, dataset, params, session):
     )
     if sampling:
         validation_labels = validation_labels[dataset.sample_indexes]
+        # setup stratified sample between training and validation data sets
         sample_size = round(params.eval_max_sample*training_size/(training_size+validation_size))
     training_vectors = m.vectors(
         model,
