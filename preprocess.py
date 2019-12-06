@@ -30,7 +30,10 @@ def log_counts(ids, vocab_size):
 
 
 def preprocess(text, vocab_to_id):
-    ids = [vocab_to_id.get(x) for x in tokens(text) if vocab_to_id.get(x)]
+    ids = [
+        vocab_to_id[x] for x in tokens(text)
+        if vocab_to_id.get(x) is not None
+    ]
     counts = log_counts(ids, len(vocab_to_id))
     sequence = counts_to_sequence(counts)
     return ' '.join([str(x) for x in sequence])

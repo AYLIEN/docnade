@@ -230,3 +230,7 @@ class TestModel(unittest.TestCase):
                 logits: logits_5
             })
             self.assertNotAlmostEqual(loss_5, 0.0, places=float_precision)
+
+
+if __name__ == '__main__':
+    unittest.main()
